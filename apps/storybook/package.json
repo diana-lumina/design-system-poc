@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_c04e4aad37f0f21"
   },
   "keywords": [],
   "author": "",
@@ -29,6 +30,7 @@
     "@types/react-dom": "^19.2.3",
     "@vitest/browser-playwright": "^4.1.7",
     "@vitest/coverage-v8": "^4.1.7",
+    "chromatic": "^17.0.0",
     "playwright": "^1.60.0",
     "storybook": "10.4.0",
     "vitest": "^4.1.7"

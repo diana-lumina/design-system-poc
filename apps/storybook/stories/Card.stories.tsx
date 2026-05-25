@@ -1,115 +1,84 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardFooter,
-} from '@workspace/ui/components/card';
-import { RatingBadge } from '@workspace/ui/components/rating-badge';
-import { BrandButton } from '@workspace/ui/components/brand-button';
+import { CardCourse } from '@workspace/ui/components/card-course';
 
-const meta: Meta<typeof Card> = {
-  title: 'Components/Card',
-  component: Card,
+const meta: Meta<typeof CardCourse> = {
+  title: 'Components/CardCourse',
+  component: CardCourse,
   tags: ['autodocs'],
   parameters: { layout: 'centered' },
   argTypes: {
-    size: {
+    type: {
       control: 'select',
-      options: ['default', 'sm'],
+      options: ['evaluative', 'transactional'],
+      description: 'Define la variante del componente',
+    },
+    badge: {
+      control: 'text',
+      description: 'Solo aplica en type="transactional"',
+    },
+    isFavorite: {
+      control: 'boolean',
+      description: 'Solo aplica en type="transactional"',
     },
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof Card>;
+type Story = StoryObj<typeof CardCourse>;
 
-export const Default: Story = {
-  name: 'Card — Default',
+const baseProps = {
+  title: 'Introducción al Machine Learning',
+  category: 'Inteligencia artificial',
+  price: 22000,
+  rating: 4.5,
+  hours: 100,
+  modality: 'Presencial',
+  level: 'Avanzado',
+  image: 'https://media.istockphoto.com/id/966248982/photo/robot-with-education-hud.jpg?s=612x612&w=0&k=20&c=9eoZYRXNZsuU3edU87PksxN4Us-c9rB6IR7U_IGZ-U8=',
+  institution: 'https://placehold.co/40x40',
+};
+
+export const Evaluative: Story = {
+  name: 'CardCourse — Evaluativa',
+  args: {
+    ...baseProps,
+    type: 'evaluative',
+  },
   render: (args) => (
-    <Card {...args} className="w-[325px]">
-      <CardHeader>
-        <CardTitle>Título de la card</CardTitle>
-        <CardDescription>Descripción de apoyo con información adicional.</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p className="text-muted-foreground">Contenido principal de la card.</p>
-      </CardContent>
-    </Card>
+    <div className="w-[325px]">
+      <CardCourse {...args} />
+    </div>
   ),
 };
 
-export const CourseCard: Story = {
-  name: 'Card — Curso (Evaluativos)',
-  render: () => (
-    <Card className="w-[325px] p-0">
+export const Transactional: Story = {
+  name: 'CardCourse — Transaccional',
+  args: {
+    ...baseProps,
+    type: 'transactional',
+    badge: '15% OFF',
+    description: 'Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum mi faucibus.',
+    isFavorite: false,
+  },
+  render: (args) => (
+    <div className="w-[325px]">
+      <CardCourse {...args} />
+    </div>
+  ),
+};
 
-      {/* Imagen con badges */}
-      <div className="relative">
-        <img
-          src="https://placehold.co/325x180/0a1628/ffffff?text=Img"
-          alt="Curso"
-          className="w-full object-cover"
-        />
-        <RatingBadge rating={4.5} />
-        <BrandButton
-          src="https://placehold.co/40x40"
-          alt="Logo institución"
-        />
-      </div>
-
-      {/* Contenido */}
-      <CardContent className="flex flex-col gap-3 px-4 py-3">
-
-        {/* Título */}
-        <div className="flex gap-2 items-center">
-          <h3 className="text-base font-medium leading-6 text-[#18181B]" >
-            Introducción al Machine Learning
-          </h3>
-        </div>
-
-        {/* Categoría */}
-        <span className="text-xs font-normal leading-[18px] text-[#18181B]" >
-          Inteligencia artificial
-        </span>
-
-        {/* Meta info */}
-        <div className="grid grid-cols-2 gap-y-2 text-xs text-[14px]">
-          <span className="flex items-center gap-1">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <circle cx="12" cy="12" r="10" />
-              <path d="M12 6v6l4 2" />
-            </svg>
-            100 horas
-          </span>
-          <span className="flex items-center gap-1">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
-              <circle cx="12" cy="9" r="2.5" />
-            </svg>
-            Presencial
-          </span>
-        
-        </div>
-
-        {/* Precio */}
-        <div className="flex items-center justify-between pt-1">
-            <span className="flex items-center gap-1 text-sm ">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <line x1="18" y1="20" x2="18" y2="10" />
-              <line x1="12" y1="20" x2="12" y2="4" />
-              <line x1="6" y1="20" x2="6" y2="14" />
-            </svg>
-            Avanzado
-          </span>
-          <span className="text-[18px] font-semibold leading-[27px] text-[#18181B]" >
-            $22,000 MXN
-          </span>
-        </div>
-
-      </CardContent>
-    </Card>
+export const Playground: Story = {
+  name: 'CardCourse — Playground',
+  args: {
+    ...baseProps,
+    type: 'transactional',
+    badge: '15% OFF',
+    description: 'Lorem ipsum dolor sit amet consectetur. Nisl nibh phasellus condimentum mi faucibus.',
+    isFavorite: false,
+  },
+  render: (args) => (
+    <div className="w-[325px]">
+      <CardCourse {...args} />
+    </div>
   ),
 };
