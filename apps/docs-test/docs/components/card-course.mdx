@@ -1,0 +1,93 @@
+---
+sidebar_position: 1
+title: CardCourse
+---
+
+
+import { CardCourse } from '@workspace/ui'
+
+# CardCourse
+
+Componente principal para mostrar cursos en el catálogo.
+
+## Preview
+
+### Evaluativa
+<iframe
+  src="https://6a10d55088f9fef8f9322927-tyxgumekbx.chromatic.com/iframe.html?id=components-cardcourse--evaluative&viewMode=story"
+  width="100%"
+  height="400"
+  style={{border: '1px solid #e5e7eb', borderRadius: '8px'}}
+/>
+
+### Transaccional
+<iframe
+  src="https://6a10d55088f9fef8f9322927-tyxgumekbx.chromatic.com/iframe.html?id=components-cardcourse--transactional&viewMode=story"
+  width="100%"
+  height="400"
+  style={{border: '1px solid #e5e7eb', borderRadius: '8px'}}
+/>
+
+## Instalación
+
+```tsx
+import { CardCourse } from '@workspace/ui'
+```
+
+## Uso
+
+### Evaluativa
+```tsx
+<CardCourse
+  type="evaluative"
+  title="Introducción al Machine Learning"
+  category="Inteligencia artificial"
+  price={22000}
+  rating={4.5}
+  hours={100}
+  modality="Presencial"
+  level="Avanzado"
+  image="/img/curso.jpg"
+  institution="/img/logo.png"
+/>
+```
+
+### Transaccional
+```tsx
+<CardCourse
+  type="transactional"
+  title="Introducción al Machine Learning"
+  badge="15% OFF"
+  description="Aprende los fundamentos del ML."
+  isFavorite={false}
+  isAuthenticated={true}
+/>
+```
+
+## Props
+
+| Prop | Tipo | Default | Descripción |
+|------|------|---------|-------------|
+| `type` | `"evaluative" \| "transactional"` | — | Define la variante |
+| `title` | `string` | — | Título del curso |
+| `category` | `string` | — | Categoría |
+| `price` | `number` | — | Precio en MXN |
+| `rating` | `number` | — | Calificación 0-5 |
+| `hours` | `number` | — | Duración en horas |
+| `modality` | `string` | — | Modalidad |
+| `level` | `string` | — | Nivel |
+| `badge` | `string` | `undefined` | Solo transaccional |
+| `description` | `string` | `undefined` | Solo transaccional |
+| `isFavorite` | `boolean` | `false` | Solo transaccional |
+| `isAuthenticated` | `boolean` | `false` | Solo transaccional |
+
+## Cuándo usar
+
+**Evaluativa** — catálogo, búsqueda, recomendaciones.
+
+**Transaccional** — wishlist, flujo de compra.
+
+## Cuándo NO usar
+
+- No uses transaccional en listados masivos
+- No uses evaluativa en carrito o checkout
